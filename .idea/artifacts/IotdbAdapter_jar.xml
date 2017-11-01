@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="IotdbAdapter:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/IotdbAdapter_jar</output-path>
+    <root id="archive" name="IotdbAdapter.jar">
+      <element id="module-output" name="IotdbAdapter" />
+      <element id="file-copy" path="$USER_HOME$/WorkSpace/Flok/IotDB/iotdb-jdbc.jar" />
+    </root>
+  </artifact>
+</component>
