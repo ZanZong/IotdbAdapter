@@ -18,14 +18,19 @@ public class LoadData {
 
         Statement statement = getStatement(url, username, pwd);
         ResultSet res = statement.executeQuery("SELECT * FROM " + prefixPath);
-        //get row number
-        int rowNum = res.getMetaData().getColumnCount();
-        int lineCount = 0;
+        //get colume number
+        ResultSetMetaData rsmd = res.getMetaData();
+        int columnNum = rsmd.getColumnCount();
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < columnNum; i++)
+            sb.append(rsmd.getColumnName(i) + ",");
+        bufferedWriter.write(sb.toString().substring(0, sb.length() - 1) + "\n");
 
+        int lineCount = 0;
         while (res.next()){
             lineCount++;
             List<String> rowitem = new ArrayList<>();
-            for(int i = 0; i < rowNum; i++) {
+            for(int i = 0; i < columnNum; i++) {
                 rowitem.add(res.getString(i));
             }
             // build string
@@ -35,7 +40,7 @@ public class LoadData {
             }
             bufferedWriter.write(stringBuilder.toString().substring(0, stringBuilder.length() - 1) + "\n");
         }
-        System.out.println("Column Numbers:" + rowNum);
+        System.out.println("Column Numbers:" + columnNum);
         System.out.println("Row Numbers:" + lineCount);
     }
 
